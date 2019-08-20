@@ -13,9 +13,6 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
 
-        // Передаём данные с Servlet на JSP
-        req.setAttribute("name", "Hello World");
-
         // Использование JSP
         req.getRequestDispatcher("view/index.jsp").forward(req, resp);
     }
