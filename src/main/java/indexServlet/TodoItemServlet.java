@@ -1,9 +1,9 @@
-//package indexServlet;
-//
-//import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.HttpServlet;
-//
-//@WebServlet(value = "/")
-//public class TodoItemServlet extends HttpServlet {
-//
-//}
+package indexServlet;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet
+public class TodoItemServlet extends HttpServlet {
+
+}
