@@ -1,12 +1,28 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Todo List</title>
 </head>
 
 <body>
-<div><input type="text" size="40">
-    <input type="submit" value="Добавить">
-</div>
+<form method="post" action="">
+    <div>
+    <label><input type="text" name="item"></label><br>
+    <input type="submit" value="Ok"><br>
+    </div>
+</form>
+
+<c:forEach var="t" items="${requestScope.todoList}">
+    <ul>
+
+        <li>Задача: <c:out value="${t}"/></li>
+
+    </ul>
+    <hr/>
+
+</c:forEach>
+
+
 </body>
 </html>
