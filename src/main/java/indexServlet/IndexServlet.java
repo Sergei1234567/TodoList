@@ -12,14 +12,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @WebServlet(value = "/")
 public class IndexServlet extends HttpServlet {
-    private final static String index = "/view/index.jsp";
     private List<String> todoList;
 
     @Override
     public void init() throws ServletException {
         todoList = new CopyOnWriteArrayList<>();
         todoList.add("Понедельник позвонить Тимуру");
-
     }
 
     @Override
@@ -28,20 +26,7 @@ public class IndexServlet extends HttpServlet {
         req.setAttribute("todoList", todoList);
 
         // Использование JSP
-        req.getRequestDispatcher(index).forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        req.setCharacterEncoding("UTF8");
-
-        final String newItem = req.getParameter("item");
-
-        todoList.add(newItem);
-
-        doGet(req, resp);
+        req.getRequestDispatcher("/view/index.jsp").forward(req, resp);
     }
 
 }
