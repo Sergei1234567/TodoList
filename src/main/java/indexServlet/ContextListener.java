@@ -16,7 +16,8 @@ public class ContextListener implements ServletContextListener {
 
         final ServletContext servletContext = servletContextEvent.getServletContext();
 
-        todoList = new CopyOnWriteArrayList();
+        todoList = new CopyOnWriteArrayList<>();
+        todoList.add("Понедельник позвонить Тимуру");
 
         servletContext.setAttribute("todoList", todoList);
 

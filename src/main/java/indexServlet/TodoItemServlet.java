@@ -8,16 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @WebServlet(value = "/item")
 public class TodoItemServlet extends HttpServlet {
     private List<String> todoList;
 
-    public void init() throws ServletException {
-        todoList = new CopyOnWriteArrayList<>();
-//        todoList.add("Понедельник позвонить Тимуру");
-//
+    public void init() {
+
         final Object todoList = getServletContext().getAttribute("todoList");
 
         if (todoList == null || !(todoList instanceof CopyOnWriteArrayList)) {
@@ -28,9 +25,9 @@ public class TodoItemServlet extends HttpServlet {
         }
     }
 
-        @Override
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
 
         req.setCharacterEncoding("UTF8");
 
@@ -38,7 +35,6 @@ public class TodoItemServlet extends HttpServlet {
 
         todoList.add(newItem);
 
-        doGet(req, resp);
-//            resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

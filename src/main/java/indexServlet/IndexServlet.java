@@ -15,9 +15,15 @@ public class IndexServlet extends HttpServlet {
     private List<String> todoList;
 
     @Override
-    public void init() throws ServletException {
-        todoList = new CopyOnWriteArrayList<>();
-        todoList.add("Понедельник позвонить Тимуру");
+    public void init() {
+        final Object todoList = getServletContext().getAttribute("todoList");
+
+        if (todoList == null || !(todoList instanceof CopyOnWriteArrayList)) {
+
+            throw new IllegalStateException("You're repo does not initialize!");
+        } else {
+            this.todoList = (CopyOnWriteArrayList<String>) todoList;
+        }
     }
 
     @Override
@@ -25,7 +31,6 @@ public class IndexServlet extends HttpServlet {
             throws IOException, ServletException {
         req.setAttribute("todoList", todoList);
 
-        // Использование JSP
         req.getRequestDispatcher("/view/index.jsp").forward(req, resp);
     }
 

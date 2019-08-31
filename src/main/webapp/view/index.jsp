@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<form method="post" action="TodoItemServlet">
+<form method="post" action="item">
     <div>
     <label><input type="text" name="item"></label><br>
     <input type="submit" value="Ok"><br>
