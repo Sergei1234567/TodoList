@@ -27,7 +27,7 @@ public class TodoItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF8");
 
