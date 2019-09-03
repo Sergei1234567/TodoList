@@ -12,7 +12,7 @@
 </form>
 
 <c:forEach var="t" items="${requestScope.todoList}">
-    <ul id="myUL">
+    <ul>
 
         <li>Задача: <c:out value="${t}"/></li>
 
