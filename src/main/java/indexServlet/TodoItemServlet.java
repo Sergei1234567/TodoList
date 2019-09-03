@@ -27,7 +27,7 @@ public class TodoItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
 
         req.setCharacterEncoding("UTF8");
 
@@ -37,4 +37,7 @@ public class TodoItemServlet extends HttpServlet {
 
         resp.sendRedirect(req.getContextPath() + "/");
     }
+
+
+
 }
