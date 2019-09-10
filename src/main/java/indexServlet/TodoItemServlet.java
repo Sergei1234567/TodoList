@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@WebServlet(value = "/item")
+@WebServlet(value = "/item/*")
 public class TodoItemServlet extends HttpServlet {
     private List<String> todoList;
 
@@ -38,6 +38,22 @@ public class TodoItemServlet extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/");
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.setAttribute("todoList", todoList);
 
+        req.getRequestDispatcher("/view/todo-list-page.jsp").include(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.setCharacterEncoding("UTF8");
+        final String id = req.getParameter("value");
+        if (id != null && !id.isEmpty()) {
+            todoList.remove(id);
+        }
+        final String path = req.getPathInfo();
+
+    }
 
 }
