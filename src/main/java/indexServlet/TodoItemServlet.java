@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -46,14 +47,22 @@ public class TodoItemServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.setCharacterEncoding("UTF8");
         final String id = req.getParameter("value");
         if (id != null && !id.isEmpty()) {
             todoList.remove(id);
         }
-        final String path = req.getPathInfo();
-
+        req.getRequestDispatcher("/").forward(new HttpServletRequestWrapper(req) {
+            @Override
+            public String getMethod() {
+                String method = super.getMethod();
+                if (method.equalsIgnoreCase("delete") || method.equalsIgnoreCase("put")) {
+                    return "GET";
+                } else {
+                    return method;
+                }
+            }
+        }, resp);
     }
-
 }
