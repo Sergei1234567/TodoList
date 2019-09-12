@@ -1,4 +1,4 @@
-package indexServlet;
+package indexServlet.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,8 +33,11 @@ public class TodoItemServlet extends HttpServlet {
         req.setCharacterEncoding("UTF8");
 
         final String newItem = req.getParameter("item");
+        if (newItem != null && !newItem.isEmpty()) {
+            todoList.add(newItem);
+        }
 
-        todoList.add(newItem);
+//        todoList.add(newItem);
 
         resp.sendRedirect(req.getContextPath() + "/");
     }
@@ -53,16 +56,6 @@ public class TodoItemServlet extends HttpServlet {
         if (id != null && !id.isEmpty()) {
             todoList.remove(id);
         }
-        req.getRequestDispatcher("/").forward(new HttpServletRequestWrapper(req) {
-            @Override
-            public String getMethod() {
-                String method = super.getMethod();
-                if (method.equalsIgnoreCase("delete") || method.equalsIgnoreCase("put")) {
-                    return "GET";
-                } else {
-                    return method;
-                }
-            }
-        }, resp);
+
     }
 }

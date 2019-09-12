@@ -1,5 +1,5 @@
 
-package indexServlet;
+package indexServlet.servlets;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
